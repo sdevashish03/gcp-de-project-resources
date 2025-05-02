@@ -1,0 +1,10 @@
+{
+    "fields": [
+      {"name": "BusinessEntityID", "type": "STRING", "mode": "REQUIRED"},
+      {"name": "DepartmentID", "type": "STRING", "mode": "REQUIRED"},
+      {"name": "ShiftID", "type": "STRING", "mode": "REQUIRED"},
+      {"name": "StartDate", "type": "STRING", "mode": "REQUIRED"},
+      {"name": "EndDate", "type": "STRING", "mode": "NULLABLE"},
+      {"name": "ModifiedDate", "type": "STRING", "mode": "REQUIRED"}
+    ]
+  }
