@@ -1,1 +1,27 @@
-*.tfstate *.tfstate.backup .terraform/ *.log *.exe *.zip *.tar.gz __pycache__/ *.pyc *.pyo *.pyd .env *.egg-info/ .vscode/ .DS_Store Thumbs.db
+# Terraform and GCP files
+**/.terraform/*
+**/*.tfstate*
+**/*.backup
+**/.terraform.lock.hcl
+**/terraform.tfvars
+**/*.log
+**/debug.log
+
+# Service account keys (CRITICAL - NEVER commit these!)
+**/*.json
+**/*.key
+
+# IDE and OS files
+**/.vscode/
+**/.idea/
+**/.DS_Store
+**/Thumbs.db
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.egg-info/
+**/.env
+**/*.exe
+**/*.zip
+**/*.tar.gz
