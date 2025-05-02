@@ -1,6 +1,4 @@
-{
-
-    "fields": [
+[
   
       {"name": "DepartmentID", "type": "INTEGER", "mode": "REQUIRED"},
   
@@ -10,7 +8,5 @@
   
       {"name": "ModifiedDate", "type": "TIMESTAMP", "mode": "REQUIRED"}
   
-    ]
-  
-  }
+]
    

@@ -1,5 +1,4 @@
-{
-    "fields": [
+[
       {"name": "BusinessEntityID", "type": "STRING", "mode": "REQUIRED"},
       {"name": "NationalIDNumber", "type": "STRING", "mode": "REQUIRED"},
       {"name": "LoginID", "type": "STRING", "mode": "REQUIRED"},
@@ -16,5 +15,4 @@
       {"name": "CurrentFlag", "type": "STRING", "mode": "REQUIRED"},
       {"name": "rowguid", "type": "STRING", "mode": "REQUIRED"},
       {"name": "ModifiedDate", "type": "STRING", "mode": "REQUIRED"}
-    ]
-  }
+]

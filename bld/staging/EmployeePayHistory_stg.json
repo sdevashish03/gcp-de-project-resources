@@ -1,6 +1,4 @@
-{
-
-    "fields": [
+[
   
       {"name": "BusinessEntityID", "type": "INTEGER", "mode": "REQUIRED"},
   
@@ -12,7 +10,5 @@
   
       {"name": "ModifiedDate", "type": "TIMESTAMP", "mode": "REQUIRED"}
   
-    ]
-  
-  }
+]
    

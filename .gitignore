@@ -1,0 +1,1 @@
+*.tfstate *.tfstate.backup .terraform/ *.log *.exe *.zip *.tar.gz __pycache__/ *.pyc *.pyo *.pyd .env *.egg-info/ .vscode/ .DS_Store Thumbs.db
