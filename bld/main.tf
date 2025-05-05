@@ -99,52 +99,90 @@ resource "google_bigquery_table" "EmployeePayHistory_stg_table" {
   }
 }
 
-# # Curation Layer
-# resource "google_bigquery_dataset" "curation_dataset" {
-#   dataset_id = "Employee_Details_cur"
-#   location   = var.dataset_location
+# Curation Layer
+resource "google_bigquery_dataset" "curation_dataset" {
+  dataset_id = "Employee_Details_cur"
+  location   = var.dataset_location
 
-#   lifecycle {
-#     prevent_destroy = false
-#   }
-# }
+  lifecycle {
+    prevent_destroy = false
+  }
+}
 
-# resource "google_bigquery_table" "curation_table" {
-#   dataset_id = google_bigquery_dataset.curation_dataset.dataset_id
-#   table_id   = "department_cur"
-#   schema     = file("C:/Users/devas/OneDrive/CasaOne Data/GitHub/gcp-de-project-resources/bld/curation/Department_curation.json") # Path to the JSON schema file
+resource "google_bigquery_table" "curation_table" {
+  dataset_id = google_bigquery_dataset.curation_dataset.dataset_id
+  table_id   = "EmployeeDepartmentAndPayHistory_cur"
+  schema     = file("C:/Users/devas/gcp-de-project-resources/bld/curation/EmployeeDepartmentAndPayHistory_cur.json") # Path to the JSON schema file
 
-#   lifecycle {
-#     prevent_destroy = false
-#   }
-# }
+  lifecycle {
+    prevent_destroy = false
+  }
+}
 
-# resource "google_bigquery_table" "curation_table" {
-#   dataset_id = google_bigquery_dataset.curation_dataset.dataset_id
-#   table_id   = "Employee_cur"
-#   schema     = file("C:/Users/devas/OneDrive/CasaOne Data/GitHub/gcp-de-project-resources/bld/curation/employee_curation.json") # Path to the JSON schema file
-
-#   lifecycle {
-#     prevent_destroy = false
-#   }
-# }
-
-# resource "google_bigquery_table" "curation_table" {
-#   dataset_id = google_bigquery_dataset.raw_dataset.dataset_id
-#   table_id   = "EmployeeDepartmentHistory_cur"
-#   schema     = file("C:/Users/devas/OneDrive/CasaOne Data/GitHub/gcp-de-project-resources/bld/curation/EmployeeDepartmentHistory_curation.json") # Path to the JSON schema file
-
-#   lifecycle {
-#     prevent_destroy = false
-#   }
-# }
-
-# resource "google_bigquery_table" "curation_table" {
-#   dataset_id = google_bigquery_dataset.curation_dataset.dataset_id
-#   table_id   = "EmployeePayHistory_cur"
-#   schema     = file("C:/Users/devas/OneDrive/CasaOne Data/GitHub/gcp-de-project-resources/bld/curation/EmployeePayHistory_curation.json") # Path to the JSON schema file
-
-#   lifecycle {
-#     prevent_destroy = false
-#   }
-# }
+#Consumption Dataset
+# This dataset is for analytical consumption views
+ 
+resource "google_bigquery_dataset" "analytics_dataset" {
+  dataset_id    = "Employee_Analytics"
+  friendly_name = "Employee Analytics Dataset"
+  description   = "Dataset for analytical consumption views"
+  location      = "US"
+}
+#consumption Views
+resource "google_bigquery_table" "vw_WorkforceDemographics" {
+  dataset_id = google_bigquery_dataset.analytics_dataset.dataset_id
+  table_id   = "vw_WorkforceDemographics"
+ 
+  view {
+    query          = <<EOF
+    SELECT BusinessEntityID, JobTitle, DepartmentName, Gender, Age, TenureYears, IsActive
+    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    EOF
+    use_legacy_sql = false
+  }
+}
+ 
+resource "google_bigquery_table" "vw_CompensationTrends" {
+  dataset_id = google_bigquery_dataset.analytics_dataset.dataset_id
+  table_id   = "vw_CompensationTrends"
+ 
+  view {
+    query          = <<EOF
+    SELECT BusinessEntityID, JobTitle, DepartmentName, Rate AS CurrentPayRate,
+           PayFrequency, YearsSinceRateChange, RateChangeImpact, HourlyRate
+    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    EOF
+    use_legacy_sql = false
+  }
+}
+ 
+resource "google_bigquery_table" "vw_DepartmentStabilityMobility" {
+  dataset_id = google_bigquery_dataset.analytics_dataset.dataset_id
+  table_id   = "vw_DepartmentStabilityMobility"
+ 
+  view {
+    query          = <<EOF
+    SELECT BusinessEntityID, JobTitle, DepartmentID, DepartmentName, StartDate AS DepartmentStartDate,
+           DepartmentTenureYears, EndDate AS DepartmentExitDate, IsActive
+    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    EOF
+    use_legacy_sql = false
+  }
+}
+ 
+resource "google_bigquery_table" "vw_PayrollForecasting" {
+  dataset_id = google_bigquery_dataset.analytics_dataset.dataset_id
+  table_id   = "vw_PayrollForecasting"
+ 
+  view {
+    query          = <<EOF
+    SELECT DepartmentName, COUNT(BusinessEntityID) AS EmployeeCount,
+           SUM(HourlyRate * PayFrequency) AS TotalPayrollCost,
+           AVG(HourlyRate) AS AvgHourlyPayRate
+    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    WHERE IsActive = TRUE
+    GROUP BY DepartmentName
+    EOF
+    use_legacy_sql = false
+  }
+}
