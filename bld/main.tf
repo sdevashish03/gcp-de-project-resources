@@ -126,7 +126,7 @@ resource "google_bigquery_dataset" "analytics_dataset" {
   dataset_id    = "Employee_Analytics"
   friendly_name = "Employee Analytics Dataset"
   description   = "Dataset for analytical consumption views"
-  location      = "US"
+  location      = var.dataset_location
 }
 #consumption Views
 resource "google_bigquery_table" "vw_WorkforceDemographics" {
@@ -136,7 +136,7 @@ resource "google_bigquery_table" "vw_WorkforceDemographics" {
   view {
     query          = <<EOF
     SELECT BusinessEntityID, JobTitle, DepartmentName, Gender, Age, TenureYears, IsActive
-    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    FROM `gcp-de-batch-sim.Employee_Details_cur.EmployeeDepartmentAndPayHistory_cur`
     EOF
     use_legacy_sql = false
   }
@@ -150,7 +150,7 @@ resource "google_bigquery_table" "vw_CompensationTrends" {
     query          = <<EOF
     SELECT BusinessEntityID, JobTitle, DepartmentName, Rate AS CurrentPayRate,
            PayFrequency, YearsSinceRateChange, RateChangeImpact, HourlyRate
-    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    FROM `gcp-de-batch-sim.Employee_Details_cur.EmployeeDepartmentAndPayHistory_cur`
     EOF
     use_legacy_sql = false
   }
@@ -164,7 +164,7 @@ resource "google_bigquery_table" "vw_DepartmentStabilityMobility" {
     query          = <<EOF
     SELECT BusinessEntityID, JobTitle, DepartmentID, DepartmentName, StartDate AS DepartmentStartDate,
            DepartmentTenureYears, EndDate AS DepartmentExitDate, IsActive
-    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    FROM `gcp-de-batch-sim.Employee_Details_cur.EmployeeDepartmentAndPayHistory_cur`
     EOF
     use_legacy_sql = false
   }
@@ -179,10 +179,29 @@ resource "google_bigquery_table" "vw_PayrollForecasting" {
     SELECT DepartmentName, COUNT(BusinessEntityID) AS EmployeeCount,
            SUM(HourlyRate * PayFrequency) AS TotalPayrollCost,
            AVG(HourlyRate) AS AvgHourlyPayRate
-    FROM `your_project_id.employee_details_cur.EmployeeDepartmentAndPayHistory_cur`
+    FROM `gcp-de-batch-sim.Employee_Details_cur.EmployeeDepartmentAndPayHistory_cur`
     WHERE IsActive = TRUE
     GROUP BY DepartmentName
     EOF
     use_legacy_sql = false
+  }
+}
+
+#ingestion metadata dataset
+resource "google_bigquery_dataset" "metadata_dataset" {
+  dataset_id    = "Ingestion_Metadata"
+  description   = "Stores metadata related to data ingestion events"
+  location      = "US"
+}
+ 
+#ingestion metadata table
+resource "google_bigquery_table" "metadata_ingestion_log" {
+  dataset_id = google_bigquery_dataset.metadata_dataset.dataset_id
+  table_id   = "IngestionMetadataLogs"
+  schema     = file("C:/Users/devas/gcp-de-project-resources/bld/metadata/IngestionMetadataLogs.json") # Path to the JSON schema file
+  deletion_protection = false
+ 
+  lifecycle {
+  prevent_destroy = false
   }
 }
