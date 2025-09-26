@@ -27,6 +27,7 @@
       {
             "name": "RawIngestionTime",
             "type": "TIMESTAMP",
-            "mode": "REQUIRED"
+            "mode": "REQUIRED",
+            "defaultValueExpression": "CURRENT_TIMESTAMP()"
       }
 ]
