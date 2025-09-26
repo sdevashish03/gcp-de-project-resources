@@ -23,10 +23,5 @@
             "name": "RawIngestionTime",
             "type": "TIMESTAMP",
             "mode": "REQUIRED"
-      },
-      {
-            "name": "RawFileSize",
-            "type": "INTEGER",
-            "mode": "REQUIRED"
       }
 ]
