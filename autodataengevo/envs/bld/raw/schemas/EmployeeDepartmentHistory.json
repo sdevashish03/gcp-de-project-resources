@@ -28,11 +28,5 @@
             "name": "ModifiedDate",
             "type": "STRING",
             "mode": "REQUIRED"
-      },
-      {
-            "name": "RawIngestionTime",
-            "type": "TIMESTAMP",
-            "mode": "REQUIRED",
-            "defaultValueExpression": "CURRENT_TIMESTAMP()"
       }
 ]
