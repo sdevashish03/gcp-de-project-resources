@@ -27,6 +27,6 @@
       {
             "name": "ModifiedDate",
             "type": "STRING",
-            "mode": "REQUIRED"
+            "mode": "NULLABLE"
       }
 ]
