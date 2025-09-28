@@ -1,0 +1,37 @@
+[
+      {
+            "name": "BusinessEntityID",
+            "type": "INTEGER",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "RateChangeDate",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+      },
+      {
+            "name": "Rate",
+            "type": "BIGNUMERIC",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "PayFrequency",
+            "type": "INTEGER",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "ModifiedDate",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+      },
+      {
+            "name": "stagingIngestionTime",
+            "type": "TIMESTAMP",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "LoadDate",
+            "type": "Date",
+            "mode": "REQUIRED"
+      }
+]

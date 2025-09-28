@@ -1,0 +1,7 @@
+project_id = "autodataengevo"
+region     = "us-central1"
+dataset_location = "US"
+#credentials_file_path = "C:/Users/devas/github/gcp-de-project-resources/autodataengevo/envs/bld/keys/autodataengevo-sa.json"
+#credentials_file_path = "C:/Users/devas/Service Account Json Keys/autodataengevo-sa.json"
+credentials_file_path = "C:/Users/devas/ServiceAccountJsonKeys/autodataengevo-sa.json"
+#gcs_bucket_name = "raw_data_autodataengevo" 

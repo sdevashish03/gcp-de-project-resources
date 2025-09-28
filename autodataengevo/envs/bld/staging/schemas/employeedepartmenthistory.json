@@ -1,0 +1,42 @@
+[
+      {
+            "name": "BusinessEntityID",
+            "type": "INTEGER",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "DepartmentID",
+            "type": "INTEGER",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "ShiftID",
+            "type": "INTEGER",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "StartDate",
+            "type": "Date",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "EndDate",
+            "type": "Date",
+            "mode": "NULLABLE"
+      },
+      {
+            "name": "ModifiedDate",
+            "type": "TIMESTAMP",
+            "mode": "NULLABLE"
+      },
+      {
+            "name": "stagingIngestionTime",
+            "type": "TIMESTAMP",
+            "mode": "REQUIRED"
+      },
+      {
+            "name": "LoadDate",
+            "type": "Date",
+            "mode": "REQUIRED"
+      }
+]
