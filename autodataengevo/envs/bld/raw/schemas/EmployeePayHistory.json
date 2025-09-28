@@ -7,7 +7,7 @@
       {
             "name": "RateChangeDate",
             "type": "STRING",
-            "mode": "REQUIRED"
+            "mode": "NULLABLE"
       },
       {
             "name": "Rate",
