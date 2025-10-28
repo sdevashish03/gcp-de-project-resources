@@ -1,0 +1,12 @@
+[
+    {"name": "IngestionID", "type": "STRING", "mode": "REQUIRED", "description": "Unique identifier for each ingestion event"},
+    {"name": "Source", "type": "STRING", "mode": "NULLABLE", "description": "Name of the table in RAW layer"},
+    {"name": "Target", "type": "STRING", "mode": "NULLABLE", "description": "Name of the table in STAGING layer"},
+    {"name": "RecordCount", "type": "INTEGER", "mode": "NULLABLE", "description": "Total number of records processed"},
+    {"name": "Status", "type": "STRING", "mode": "NULLABLE", "description": "Status of ingestion (Success, Failed, In Progress)"},
+    {"name": "ErrorMessage", "type": "STRING", "mode": "NULLABLE", "description": "Error details if ingestion fails"},
+    {"name": "IngestionStartTime", "type": "TIMESTAMP", "mode": "NULLABLE", "description": "Timestamp when ingestion started"},
+    {"name": "IngestionEndTime", "type": "TIMESTAMP", "mode": "NULLABLE", "description": "Timestamp when ingestion completed"},
+    {"name": "ProcessingDurationSec", "type": "FLOAT", "mode": "NULLABLE", "description": "Processing time in seconds"}
+
+]

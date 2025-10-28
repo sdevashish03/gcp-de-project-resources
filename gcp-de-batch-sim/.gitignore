@@ -1,0 +1,41 @@
+# Terraform files
+.terraform/
+*.tfstate
+*.tfstate.backup
+ 
+# Provider credentials
+credentials.json
+sa-key.json
+/secrets/*
+ 
+# Temporary files
+*~
+*.swp
+*.log
+.DS_Store
+ 
+# Cloud provider specific
+/google/
+/azure/
+/aws/
+ 
+# Local files
+local.tfvars
+terraform.tfvars
+ 
+# Crash logs
+crash.log
+ 
+# Terraform Plugin Cache
+/.terraform.d/
+ 
+#Python Specific
+__pycache__/
+*.pyc
+*.pyo
+*.exe
+
+rm bld/.terraform/providers/registry.terraform.io/hashicorp/google/6.33.0/windows_386/terraform-provider-google_v6.33.0_x5.exe
+echo ".terraform/" >> .gitignore
+git commit -m "Removed large provider binary and updated .gitignore"
+git push origin main

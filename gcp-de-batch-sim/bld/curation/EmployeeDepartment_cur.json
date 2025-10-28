@@ -1,0 +1,20 @@
+[
+  { "name": "BusinessEntityID", "type": "INTEGER", "mode": "REQUIRED" },
+  { "name": "LoginID", "type": "STRING", "mode": "REQUIRED" },
+  { "name": "NationalIDNumber", "type": "STRING", "mode": "REQUIRED" },
+  { "name": "JobTitle", "type": "STRING", "mode": "REQUIRED" },
+  { "name": "BirthDate", "type": "DATE", "mode": "REQUIRED" },
+  { "name": "Gender", "type": "STRING", "mode": "REQUIRED" },
+  { "name": "HireDate", "type": "DATE", "mode": "REQUIRED" },
+  { "name": "SalariedFlag", "type": "BOOLEAN", "mode": "REQUIRED" },
+  { "name": "VacationHours", "type": "INTEGER", "mode": "REQUIRED" },
+  { "name": "SickLeaveHours", "type": "INTEGER", "mode": "REQUIRED" },
+  { "name": "CurrentFlag", "type": "BOOLEAN", "mode": "REQUIRED" },
+  { "name": "EmployeeModifiedDate", "type": "TIMESTAMP", "mode": "REQUIRED" },
+  { "name": "DepartmentID", "type": "INTEGER", "mode": "REQUIRED" },
+  { "name": "DepartmentName", "type": "STRING", "mode": "REQUIRED" },
+  { "name": "GroupName", "type": "STRING", "mode": "REQUIRED" },
+  { "name": "CurationIngestionTime", "type": "TIMESTAMP", "mode": "REQUIRED" },
+  { "name": "RowStartDate", "type": "DATE", "mode": "REQUIRED" },
+  { "name": "RowEndDate", "type": "DATE", "mode": "REQUIRED" }
+]

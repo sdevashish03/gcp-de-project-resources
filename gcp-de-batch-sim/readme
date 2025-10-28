@@ -1,0 +1,15 @@
+To avoid this in future multi-project setups:
+- Create named configurations
+
+
+gcloud config configurations create gcp-batch-sim
+gcloud config set project gcp-de-batch-sim-464816-476514
+gcloud config set account sdevashishsenapati03@gmail.com
+
+Then activate with:
+gcloud config configurations activate gcp-batch-sim
+
+
+--If you get access denied error
+$env:GOOGLE_APPLICATION_CREDENTIALS="C:\Users\devas\github\gcp-de-project-resources\gcp-de-batch-sim\bld\gcp-de-batch-sim-464816-476514-bab4afe1b096.json"
+ 
