@@ -12,7 +12,7 @@ resource "google_bigquery_dataset" "raw_dataset" {
 resource "google_bigquery_table" "Department_raw_table" {
   dataset_id = google_bigquery_dataset.raw_dataset.dataset_id
   table_id   = "Department_raw"
-  schema     = file("C:/Users/devas/github/gcp-de-project-resources/gcp-de-batch-sim/bld/raw/Department_raw.json") # Path to the JSON schema file
+  schema     = file("${path.module}/raw/Department_raw.json") # Path to the JSON schema file
   deletion_protection = false
 
   lifecycle {
@@ -22,7 +22,7 @@ resource "google_bigquery_table" "Department_raw_table" {
 resource "google_bigquery_table" "Employee_raw_table" {
   dataset_id = google_bigquery_dataset.raw_dataset.dataset_id
   table_id   = "Employee_raw"
-  schema     = file("C:/Users/devas/github/gcp-de-project-resources/gcp-de-batch-sim/bld/raw/Employee_raw.json") # Path to the JSON schema file
+  schema     = file("${path.module}/raw/Employee_raw.json") # Path to the JSON schema file
   deletion_protection = false
 
   lifecycle {
@@ -44,7 +44,7 @@ resource "google_bigquery_dataset" "staging_dataset" {
 resource "google_bigquery_table" "Department_stg_table" {
   dataset_id = google_bigquery_dataset.staging_dataset.dataset_id
   table_id   = "Department_stg"
-  schema     = file("C:/Users/devas/github/gcp-de-project-resources/gcp-de-batch-sim/bld/staging/Department_stg.json") # Reusing the same schema file
+  schema     = file("${path.module}/staging/Department_stg.json") # Reusing the same schema file
   deletion_protection = false
 
   lifecycle {
@@ -54,7 +54,7 @@ resource "google_bigquery_table" "Department_stg_table" {
 resource "google_bigquery_table" "Employee_stg_table" {
   dataset_id = google_bigquery_dataset.staging_dataset.dataset_id
   table_id   = "Employee_stg"
-  schema     = file("C:/Users/devas/github/gcp-de-project-resources/gcp-de-batch-sim/bld/staging/Employee_stg.json") # Reusing the same schema file
+  schema     = file("${path.module}/staging/Employee_stg.json") # Reusing the same schema file
   deletion_protection = false
 
   lifecycle {
@@ -76,7 +76,7 @@ resource "google_bigquery_dataset" "curation_dataset" {
 resource "google_bigquery_table" "curation_table" {
   dataset_id = google_bigquery_dataset.curation_dataset.dataset_id
   table_id   = "EmployeeDepartment_cur"
-  schema     = file("C:/Users/devas/github/gcp-de-project-resources/gcp-de-batch-sim/bld/curation/EmployeeDepartment_cur.json") # Path to the JSON schema file
+  schema     = file("${path.module}/curation/EmployeeDepartment_cur.json") # Path to the JSON schema file
   deletion_protection = false
   lifecycle {
     prevent_destroy = false
@@ -94,7 +94,7 @@ resource "google_bigquery_dataset" "metadata_dataset" {
 resource "google_bigquery_table" "metadata_ingestion_log" {
   dataset_id = google_bigquery_dataset.metadata_dataset.dataset_id
   table_id   = "IngestionMetadataLogs"
-  schema     = file("C:/Users/devas/github/gcp-de-project-resources/gcp-de-batch-sim/bld/metadata/IngestionMetadataLogs.json") # Path to the JSON schema file
+  schema     = file("${path.module}/metadata/IngestionMetadataLogs.json") # Path to the JSON schema file
   deletion_protection = false
 
   lifecycle {

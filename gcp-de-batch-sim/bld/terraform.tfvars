@@ -1,0 +1,5 @@
+project_id = "gcp-de-batch-sim-5"
+region     = "us-central1"
+dataset_location = "US"
+credentials_file_path = "D:/Learning/GCP Data Engineer/PDE Projects/json_key/gcp-de-batch-sim/gcp-de-batch-sim-5-456c9bf832ac.json"
+gcs_bucket_name = "gcp-de-batch-data-5"  

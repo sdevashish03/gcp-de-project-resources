@@ -21,7 +21,7 @@ sa-key.json
  
 # Local files
 local.tfvars
-terraform.tfvars
+#terraform.tfvars
  
 # Crash logs
 crash.log
